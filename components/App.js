@@ -8,6 +8,7 @@ import extractKeywords from './utils/extractKeywords';
 import SpottedKeywordsList from './SpottedKeywordsList';
 import { scripts } from './scripts';
 import dayjs from 'dayjs';
+import GenerateButton from './GenerateButton';
 
 const creativeTypes = {
   'day-hour-min': 'Day-Hour-Min',
@@ -18,6 +19,7 @@ const App = () => {
   const [type, setType] = React.useState('');
   const [spottedKeywords, setSpottedKeywords] = React.useState([]);
   const [endDate, setEndDate] = React.useState(dayjs(new Date()));
+  const [droppedFile, setDroppedFile] = React.useState(null);
 
   const updateSpottedKeywords = useCallback((index, value) => {
     setSpottedKeywords((prev) => {
@@ -30,6 +32,7 @@ const App = () => {
 
   const handleDrop = (acceptedFiles) => {
     console.log(acceptedFiles);
+    setDroppedFile(acceptedFiles[0]);
     extractKeywords(acceptedFiles[0]).then((keywords) => {
       let array = keywords.map((keyword) => {
         return {
@@ -64,7 +67,7 @@ const App = () => {
               </Grid>
               <Grid item xs={12}>
                 <Collapse in={type !== ''}>
-                  <DateTimeSelector date={endDate} setDate={setEndDate}/>
+                  <DateTimeSelector date={endDate} setDate={setEndDate} />
                 </Collapse>
               </Grid>
               <Grid item xs={12}>
@@ -87,6 +90,14 @@ const App = () => {
                     />
                   </Grid>
                 ) : null}
+                <Grid item xs={12}>
+                  <GenerateButton
+                    type={type}
+                    date={endDate}
+                    file={droppedFile}
+                    keywordsState={spottedKeywords}
+                  />
+                </Grid>
               </Grid>
             </Collapse>
           </Grid>

@@ -7,7 +7,6 @@ export const scripts = {
       days: 'leftDays.days',
       hours: 'leftDays.hours',
       minutes: 'leftDays.minutes',
-      seconds: 'leftDays.seconds',
     },
   },
 };
