@@ -1,25 +1,41 @@
 import { Collapse, Container, Grid } from '@mui/material';
-import React from 'react';
+import React, { useCallback } from 'react';
 import DateTimeSelector from './DateTimeSelector';
 import DropZone from './DropZone';
 import TypeSelector from './TypeSelector';
 import { SnackbarProvider } from 'notistack';
 import extractKeywords from './utils/extractKeywords';
 import SpottedKeywordsList from './SpottedKeywordsList';
+import { scripts } from './scripts';
 
 const creativeTypes = {
   'day-hour-min': 'Day-Hour-Min',
-  'hour-min-sec': 'Hour-Min-Sec',
+  // 'hour-min-sec': 'Hour-Min-Sec',
 };
 
 const App = () => {
   const [type, setType] = React.useState('');
   const [spottedKeywords, setSpottedKeywords] = React.useState([]);
 
+  const updateSpottedKeywords = useCallback((index, value) => {
+    setSpottedKeywords((prev) => {
+      const newList = [...prev];
+      newList[index].replaceWith = value;
+      return newList;
+    });
+  }, []);
+  console.log('spottedKeywords', spottedKeywords);
+
   const handleDrop = (acceptedFiles) => {
     console.log(acceptedFiles);
     extractKeywords(acceptedFiles[0]).then((keywords) => {
-      setSpottedKeywords(keywords);
+      let array = keywords.map((keyword) => {
+        return {
+          keyword,
+          replaceWith: '',
+        };
+      });
+      setSpottedKeywords(array);
     });
   };
 
@@ -60,9 +76,15 @@ const App = () => {
           <Grid item xs={6}>
             <Collapse in={spottedKeywords.length > 0}>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <SpottedKeywordsList list={spottedKeywords} />
-                </Grid>
+                {type !== '' ? (
+                  <Grid item xs={12}>
+                    <SpottedKeywordsList
+                      list={spottedKeywords}
+                      replaceWithList={scripts[type].keywords}
+                      updateSpottedKeywords={updateSpottedKeywords}
+                    />
+                  </Grid>
+                ) : null}
               </Grid>
             </Collapse>
           </Grid>
