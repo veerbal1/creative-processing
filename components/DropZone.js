@@ -2,12 +2,13 @@ import { Card } from '@mui/material';
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-const DropZone = () => {
+const DropZone = ({ handleDrop }) => {
   const onDrop = useCallback((acceptedFiles) => {
-    // Do something with the files
-    console.log(acceptedFiles);
+    handleDrop(acceptedFiles);
   }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+  });
   return (
     <Card
       sx={{

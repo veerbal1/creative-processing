@@ -22,7 +22,7 @@ const App = () => {
       }}
     >
       <TypeSelector state={type} handleChange={setType} list={creativeTypes} />
-      <DropZone />
+      <DropZone handleDrop={() => null} />
     </Container>
   );
 };
