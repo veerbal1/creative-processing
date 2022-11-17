@@ -7,6 +7,7 @@ import { SnackbarProvider } from 'notistack';
 import extractKeywords from './utils/extractKeywords';
 import SpottedKeywordsList from './SpottedKeywordsList';
 import { scripts } from './scripts';
+import dayjs from 'dayjs';
 
 const creativeTypes = {
   'day-hour-min': 'Day-Hour-Min',
@@ -16,6 +17,7 @@ const creativeTypes = {
 const App = () => {
   const [type, setType] = React.useState('');
   const [spottedKeywords, setSpottedKeywords] = React.useState([]);
+  const [endDate, setEndDate] = React.useState(dayjs(new Date()));
 
   const updateSpottedKeywords = useCallback((index, value) => {
     setSpottedKeywords((prev) => {
@@ -24,7 +26,7 @@ const App = () => {
       return newList;
     });
   }, []);
-  console.log('spottedKeywords', spottedKeywords);
+  console.log('date', endDate);
 
   const handleDrop = (acceptedFiles) => {
     console.log(acceptedFiles);
@@ -62,7 +64,7 @@ const App = () => {
               </Grid>
               <Grid item xs={12}>
                 <Collapse in={type !== ''}>
-                  <DateTimeSelector />
+                  <DateTimeSelector date={endDate} setDate={setEndDate}/>
                 </Collapse>
               </Grid>
               <Grid item xs={12}>
