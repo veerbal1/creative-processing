@@ -13,7 +13,7 @@ const DropZone = ({ handleDrop }) => {
     <Card
       sx={{
         minHeight: '40vh',
-        width: '50%',
+        minWidth: '50vw',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

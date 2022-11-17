@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Collapse, Container } from '@mui/material';
 import React from 'react';
 import DropZone from './DropZone';
 import TypeSelector from './TypeSelector';
@@ -22,7 +22,9 @@ const App = () => {
       }}
     >
       <TypeSelector state={type} handleChange={setType} list={creativeTypes} />
-      <DropZone handleDrop={() => null} />
+      <Collapse in={type !== ''}>
+        <DropZone handleDrop={() => null} />
+      </Collapse>
     </Container>
   );
 };
