@@ -1,14 +1,28 @@
 import { Card } from '@mui/material';
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useSnackbar } from 'notistack';
 
 const DropZone = ({ handleDrop }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const onDrop = useCallback((acceptedFiles) => {
-    handleDrop(acceptedFiles);
+    if (acceptedFiles.length > 0) {
+      handleDrop(acceptedFiles);
+    } else {
+      enqueueSnackbar('Kindly select .zip file', {
+        variant: 'error',
+        autoHideDuration: 3000,
+      });
+    }
   }, []);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
+    accept: {
+      'application/zip': ['.zip'],
+    },
   });
+
   return (
     <Card
       sx={{

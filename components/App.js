@@ -3,6 +3,7 @@ import React from 'react';
 import DateTimeSelector from './DateTimeSelector';
 import DropZone from './DropZone';
 import TypeSelector from './TypeSelector';
+import { SnackbarProvider } from 'notistack';
 
 const creativeTypes = {
   'day-hour-min': 'Day-Hour-Min',
@@ -22,25 +23,27 @@ const App = () => {
         minHeight: '100vh',
       }}
     >
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <TypeSelector
-            state={type}
-            handleChange={setType}
-            list={creativeTypes}
-          />
+      <SnackbarProvider>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TypeSelector
+              state={type}
+              handleChange={setType}
+              list={creativeTypes}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Collapse in={type !== ''}>
+              <DateTimeSelector />
+            </Collapse>
+          </Grid>
+          <Grid item xs={12}>
+            <Collapse in={type !== ''}>
+              <DropZone handleDrop={() => null} />
+            </Collapse>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Collapse in={type !== ''}>
-            <DateTimeSelector />
-          </Collapse>
-        </Grid>
-        <Grid item xs={12}>
-          <Collapse in={type !== ''}>
-            <DropZone handleDrop={() => null} />
-          </Collapse>
-        </Grid>
-      </Grid>
+      </SnackbarProvider>
     </Container>
   );
 };
