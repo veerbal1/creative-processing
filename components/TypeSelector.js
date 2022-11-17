@@ -3,13 +3,13 @@ import React from 'react';
 
 const TypeSelector = ({ list, state, handleChange }) => {
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-      <InputLabel id="demo-select-small">Age</InputLabel>
+    <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
+      <InputLabel id="demo-select-small">Creative Category</InputLabel>
       <Select
         labelId="demo-select-small"
         id="demo-select-small"
         value={state}
-        label="Age"
+        label="Creative Category"
         onChange={(e) => handleChange(e.target.value)}
       >
         <MenuItem value="">
