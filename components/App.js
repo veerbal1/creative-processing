@@ -1,4 +1,4 @@
-import { Collapse, Container } from '@mui/material';
+import { Collapse, Container, Grid } from '@mui/material';
 import React from 'react';
 import DateTimeSelector from './DateTimeSelector';
 import DropZone from './DropZone';
@@ -22,11 +22,25 @@ const App = () => {
         minHeight: '100vh',
       }}
     >
-      <TypeSelector state={type} handleChange={setType} list={creativeTypes} />
-      <DateTimeSelector />
-      <Collapse in={type !== ''}>
-        <DropZone handleDrop={() => null} />
-      </Collapse>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TypeSelector
+            state={type}
+            handleChange={setType}
+            list={creativeTypes}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Collapse in={type !== ''}>
+            <DateTimeSelector />
+          </Collapse>
+        </Grid>
+        <Grid item xs={12}>
+          <Collapse in={type !== ''}>
+            <DropZone handleDrop={() => null} />
+          </Collapse>
+        </Grid>
+      </Grid>
     </Container>
   );
 };

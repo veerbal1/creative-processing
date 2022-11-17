@@ -3,7 +3,7 @@ import React from 'react';
 
 const TypeSelector = ({ list, state, handleChange }) => {
   return (
-    <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
+    <FormControl sx={{ m: 1, width: '100%' }} size="small">
       <InputLabel id="demo-select-small">Creative Category</InputLabel>
       <Select
         labelId="demo-select-small"
@@ -11,6 +11,7 @@ const TypeSelector = ({ list, state, handleChange }) => {
         value={state}
         label="Creative Category"
         onChange={(e) => handleChange(e.target.value)}
+        fullWidth
       >
         <MenuItem value="">
           <em>None</em>
