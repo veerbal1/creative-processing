@@ -1,5 +1,6 @@
 import { Container } from '@mui/material';
 import React from 'react';
+import DropZone from './DropZone';
 import TypeSelector from './TypeSelector';
 
 const creativeTypes = {
@@ -9,7 +10,7 @@ const creativeTypes = {
 
 const App = () => {
   const [type, setType] = React.useState('');
-  
+
   return (
     <Container
       sx={{
@@ -21,6 +22,7 @@ const App = () => {
       }}
     >
       <TypeSelector state={type} handleChange={setType} list={creativeTypes} />
+      <DropZone />
     </Container>
   );
 };
