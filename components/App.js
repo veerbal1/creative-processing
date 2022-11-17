@@ -25,23 +25,28 @@ const App = () => {
     >
       <SnackbarProvider>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TypeSelector
-              state={type}
-              handleChange={setType}
-              list={creativeTypes}
-            />
+          <Grid item xs={6}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TypeSelector
+                  state={type}
+                  handleChange={setType}
+                  list={creativeTypes}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Collapse in={type !== ''}>
+                  <DateTimeSelector />
+                </Collapse>
+              </Grid>
+              <Grid item xs={12}>
+                <Collapse in={type !== ''}>
+                  <DropZone handleDrop={() => null} />
+                </Collapse>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Collapse in={type !== ''}>
-              <DateTimeSelector />
-            </Collapse>
-          </Grid>
-          <Grid item xs={12}>
-            <Collapse in={type !== ''}>
-              <DropZone handleDrop={() => null} />
-            </Collapse>
-          </Grid>
+          <Grid item xs={6}></Grid>
         </Grid>
       </SnackbarProvider>
     </Container>
