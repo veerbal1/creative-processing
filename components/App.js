@@ -1,5 +1,6 @@
 import { Collapse, Container } from '@mui/material';
 import React from 'react';
+import DateTimeSelector from './DateTimeSelector';
 import DropZone from './DropZone';
 import TypeSelector from './TypeSelector';
 
@@ -22,6 +23,7 @@ const App = () => {
       }}
     >
       <TypeSelector state={type} handleChange={setType} list={creativeTypes} />
+      <DateTimeSelector />
       <Collapse in={type !== ''}>
         <DropZone handleDrop={() => null} />
       </Collapse>

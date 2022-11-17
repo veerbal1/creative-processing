@@ -16,7 +16,10 @@
     "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-dropzone": "^14.2.3"
+    "react-dropzone": "^14.2.3",
+    "@mui/x-date-pickers": "^5.0.0",
+    "date-fns": "latest",
+    "dayjs": "latest"
   },
   "devDependencies": {
     "eslint": "8.27.0",
