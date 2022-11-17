@@ -12,14 +12,15 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.14",
-    "jszip": "^3.10.1",
-    "next": "13.0.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-dropzone": "^14.2.3",
     "@mui/x-date-pickers": "^5.0.0",
     "date-fns": "latest",
-    "dayjs": "latest"
+    "dayjs": "latest",
+    "jszip": "^3.10.1",
+    "next": "13.0.3",
+    "notistack": "^2.0.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
     "eslint": "8.27.0",
