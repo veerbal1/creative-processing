@@ -4,6 +4,8 @@ import DateTimeSelector from './DateTimeSelector';
 import DropZone from './DropZone';
 import TypeSelector from './TypeSelector';
 import { SnackbarProvider } from 'notistack';
+import extractKeywords from './utils/extractKeywords';
+import SpottedKeywordsList from './SpottedKeywordsList';
 
 const creativeTypes = {
   'day-hour-min': 'Day-Hour-Min',
@@ -12,6 +14,14 @@ const creativeTypes = {
 
 const App = () => {
   const [type, setType] = React.useState('');
+  const [spottedKeywords, setSpottedKeywords] = React.useState([]);
+
+  const handleDrop = (acceptedFiles) => {
+    console.log(acceptedFiles);
+    extractKeywords(acceptedFiles[0]).then((keywords) => {
+      setSpottedKeywords(keywords);
+    });
+  };
 
   return (
     <Container
@@ -41,12 +51,21 @@ const App = () => {
               </Grid>
               <Grid item xs={12}>
                 <Collapse in={type !== ''}>
-                  <DropZone handleDrop={() => null} />
+                  <DropZone handleDrop={handleDrop} />
                 </Collapse>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6}></Grid>
+          {/* Right section */}
+          <Grid item xs={6}>
+            <Collapse in={spottedKeywords.length > 0}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <SpottedKeywordsList list={spottedKeywords} />
+                </Grid>
+              </Grid>
+            </Collapse>
+          </Grid>
         </Grid>
       </SnackbarProvider>
     </Container>
