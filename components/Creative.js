@@ -16,13 +16,30 @@ const Creative = () => {
               multipleIndex.push(index);
               index = data.indexOf(keyword, index + 1);
             }
-            // console.log(multipleIndex);
+
+            let spottedKeywords = [];
             multipleIndex.forEach((index) => {
               let start = index + keyword.length;
               let end = data.indexOf(',', start);
               let text = data.substring(start, end);
-              console.log(start, end, text);
+              spottedKeywords.push(text);
+              console.log(data.substring(start - 5, end + 5));
             });
+
+            console.log('spottedKeywords', spottedKeywords);
+            // Replace here
+            spottedKeywords.forEach((keyword) => {
+              let index = data.indexOf(keyword);
+              let start = index;
+              let end = index + keyword.length;
+              let text = data.substring(start, end);
+              let replaced = text.replace(
+                keyword,
+                'Math.floor(Math.random() * 100)'
+              );
+              data = data.replace(text, replaced);
+            });
+            console.log('data', data);
           });
         }
       });
