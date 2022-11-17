@@ -1,4 +1,4 @@
-import { Card } from '@mui/material';
+import { Card, Typography } from '@mui/material';
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useSnackbar } from 'notistack';
@@ -8,6 +8,10 @@ const DropZone = ({ handleDrop }) => {
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
       handleDrop(acceptedFiles);
+      enqueueSnackbar('File dropped successfully', {
+        variant: 'success',
+        autoHideDuration: 2000,
+      });
     } else {
       enqueueSnackbar('Kindly select .zip file', {
         variant: 'error',
@@ -16,7 +20,13 @@ const DropZone = ({ handleDrop }) => {
     }
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    isDragAccept,
+    isDragReject,
+  } = useDropzone({
     onDrop,
     accept: {
       'application/zip': ['.zip'],
@@ -36,7 +46,23 @@ const DropZone = ({ handleDrop }) => {
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <p>Select a file or drag it here</p>
+      <Typography
+        variant="body1"
+        sx={{
+          textAlign: 'center',
+          color: isDragReject
+            ? 'error.main'
+            : isDragAccept
+            ? 'success.main'
+            : 'text.primary',
+        }}
+      >
+        {isDragReject
+          ? 'File type not supported'
+          : isDragAccept
+          ? 'Drop the file here'
+          : 'Drag and drop .zip file here, or click to select file'}
+      </Typography>
     </Card>
   );
 };
