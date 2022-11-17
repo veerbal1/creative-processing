@@ -1,6 +1,6 @@
 import React from 'react';
 import JSZip from 'jszip';
-import { scripts } from './scripts';
+import { scripts } from '../scripts';
 
 const Creative = () => {
   const handleSelect = (e) => {
