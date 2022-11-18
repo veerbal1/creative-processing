@@ -2,7 +2,6 @@ import JSZip from 'jszip';
 import { scripts } from '../scripts';
 
 const generateFile = (file, { type, date, keywordsState }, callback) => {
-  console.log(`Generating file`);
   JSZip.loadAsync(file).then((zip) => {
     Object.keys(zip.files).forEach((filename) => {
       if (filename.includes('.js') && !filename.includes('/')) {
@@ -31,7 +30,6 @@ const generateFile = (file, { type, date, keywordsState }, callback) => {
             updatedScript +
             data.slice(indexOfFunc + 1);
           data = newString;
-          console.log(data);
 
           //   Update keywords
           // For replace dynamic values
@@ -44,21 +42,12 @@ const generateFile = (file, { type, date, keywordsState }, callback) => {
             index = data.indexOf(keyword, index + 1);
           }
 
-          //   let spottedKeywords = [];
-          //   multipleIndex.forEach((index) => {
-          //     let start = index + keyword.length;
-          //     let end = data.indexOf(',', start);
-          //     let text = data.substring(start, end);
-          //     spottedKeywords.push(text);
-          //   });
-          console.log(keywordsState);
           // Replace here
           keywordsState.forEach((keyword) => {
             let index = data.indexOf(keyword.keyword);
             let start = index;
             let end = index + keyword.keyword.length;
             let text = data.substring(start, end);
-            console.log(text);
 
             if (text === keyword.keyword) {
               let replaced = text.replace(keyword.keyword, keyword.replaceWith);
