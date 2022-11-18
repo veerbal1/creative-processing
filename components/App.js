@@ -1,4 +1,4 @@
-import { Collapse, Container, Grid } from '@mui/material';
+import { Collapse, Container, Grid, Typography } from '@mui/material';
 import React, { useCallback } from 'react';
 import DateTimeSelector from './DateTimeSelector';
 import DropZone from './DropZone';
@@ -56,6 +56,11 @@ const App = () => {
     >
       <SnackbarProvider>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Typography variant="h4" component="h1" gutterBottom align='center'>
+              Dynamic Creative Generator
+            </Typography>
+          </Grid>
           <Grid item xs={6}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
