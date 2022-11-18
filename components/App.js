@@ -12,7 +12,7 @@ import GenerateButton from './GenerateButton';
 
 const creativeTypes = {
   'day-hour-min': 'Day-Hour-Min',
-  // 'hour-min-sec': 'Hour-Min-Sec',
+  'hour-min-sec': 'Hour-Min-Sec',
 };
 
 const App = () => {
