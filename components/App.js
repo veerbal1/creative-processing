@@ -9,6 +9,7 @@ import SpottedKeywordsList from './SpottedKeywordsList';
 import { scripts } from './scripts';
 import dayjs from 'dayjs';
 import GenerateButton from './GenerateButton';
+import Countdown from './Countdown';
 
 const creativeTypes = {
   'day-hour-min': 'Day-Hour-Min',
@@ -28,10 +29,8 @@ const App = () => {
       return newList;
     });
   }, []);
-  console.log('date', endDate);
 
   const handleDrop = (acceptedFiles) => {
-    console.log(acceptedFiles);
     setDroppedFile(acceptedFiles[0]);
     extractKeywords(acceptedFiles[0]).then((keywords) => {
       let array = keywords.map((keyword) => {
@@ -57,7 +56,7 @@ const App = () => {
       <SnackbarProvider>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h4" component="h1" gutterBottom align='center'>
+            <Typography variant="h4" component="h1" gutterBottom align="center" color="textSecondary">
               Dynamic Creative Generator
             </Typography>
           </Grid>
@@ -73,6 +72,11 @@ const App = () => {
               <Grid item xs={12}>
                 <Collapse in={type !== ''}>
                   <DateTimeSelector date={endDate} setDate={setEndDate} />
+                </Collapse>
+              </Grid>
+              <Grid item xs={12}>
+                <Collapse in={type !== ''}>
+                  <Countdown date={endDate.$d} type={type} />
                 </Collapse>
               </Grid>
               <Grid item xs={12}>
