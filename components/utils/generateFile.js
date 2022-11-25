@@ -2,6 +2,7 @@ import JSZip from 'jszip';
 import { scripts } from '../scripts';
 
 const generateFile = (file, { type, date, keywordsState }, callback) => {
+  let zipFileName = file.name.split('.')[0];
   JSZip.loadAsync(file).then((zip) => {
     Object.keys(zip.files).forEach((filename) => {
       if (filename.includes('.js') && !filename.includes('/')) {
@@ -57,7 +58,7 @@ const generateFile = (file, { type, date, keywordsState }, callback) => {
           // Save file
           let updatedZip = zip.file(filename, data);
           updatedZip.generateAsync({ type: 'blob' }).then((content) => {
-            saveAs(content, 'updated.zip');
+            saveAs(content, `${zipFileName}-dynamic.zip`);
           });
         });
       }
